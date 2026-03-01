@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { supabaseBrowser } from '../../lib/supabase/browser'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 type VoteValue = 'yes'|'no'|'abstain'
 

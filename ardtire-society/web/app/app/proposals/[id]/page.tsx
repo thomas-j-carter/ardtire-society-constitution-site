@@ -1,10 +1,10 @@
-import { supabaseServer } from '../../../../lib/supabase/server'
+import { supabaseBrowser } from '@/lib/supabase/client'
 import { VotePanel } from '../../../../components/app/VotePanel'
 
 export const dynamic = 'force-dynamic'
 
 export default async function ProposalDetail({ params }: { params: { id: string } }) {
-  const supabase = supabaseServer()
+  const supabase = supabaseBrowser()
   const { data: proposal } = await supabase.from('proposals').select('*').eq('id', params.id).maybeSingle()
   const { data: tallies } = await supabase.from('proposal_vote_tallies').select('*').eq('proposal_id', params.id).maybeSingle()
 

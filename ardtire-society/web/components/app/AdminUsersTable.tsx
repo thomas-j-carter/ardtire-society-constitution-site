@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { supabaseBrowser } from '../../lib/supabase/browser'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 type MemberRole = 'founder'|'admin'|'member'|'observer'
 type Row = { user_id: string; display_name: string | null; role: MemberRole; created_at: string }

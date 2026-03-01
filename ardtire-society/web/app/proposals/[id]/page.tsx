@@ -1,11 +1,11 @@
-import { supabaseServer } from '@/lib/supabase/server';
+import { supabaseBrowser } from '@/lib/supabase/client'
 import { cookies } from 'next/headers';
 import { ProposalCard } from '@/components/governance/ProposalCard';
 import { CommentItem } from '@/components/governance/CommentItem';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export default async function ProposalDetailPage({ params }: { params: { id: string } }) {
-  const supabase = supabaseServer();
+  const supabase = supabaseBrowser();
   
   // Fetch Proposal
   const { data: proposal } = await supabase

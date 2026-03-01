@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { supabaseServer } from '../../../lib/supabase/server'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 export const dynamic = 'force-dynamic'
 
@@ -8,7 +8,7 @@ async function signUp(formData: FormData) {
   const email = String(formData.get('email') ?? '')
   const password = String(formData.get('password') ?? '')
   const displayName = String(formData.get('display_name') ?? '')
-  const supabase = supabaseServer()
+  const supabase = supabaseBrowser()
   const { error } = await supabase.auth.signUp({
     email,
     password,

@@ -19,8 +19,14 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
+    "@sanity/client": "^7.14.1",
     "@supabase/auth-helpers-nextjs": "^0.15.0",
+    "@types/react": "^19.2",
     "docx": "^9.6.0",
+    "next": "^16.0.0-0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sanity": "^5.8.1",
     "solid": "link:@heroicons/react/20/solid"
   }
 }

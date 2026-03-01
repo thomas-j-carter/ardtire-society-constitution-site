@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { supabaseBrowser } from '../../lib/supabase/browser'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 type DocVisibility = 'public'|'members'|'admins'
 type DocumentRow = { id: string; title: string; description: string | null; visibility: DocVisibility }

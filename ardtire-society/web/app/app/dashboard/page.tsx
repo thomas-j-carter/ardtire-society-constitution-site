@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { supabaseServer } from '../../../lib/supabase/server'
+import { supabaseBrowser } from '@/lib/supabase/client'
 import { getMyProfile } from '../../../lib/supabase/profile'
 import { hasRole } from '../../../lib/supabase/rbac'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Dashboard() {
-  const supabase = supabaseServer()
+  const supabase = supabaseBrowser()
   const profile = await getMyProfile()
   const role = (profile?.role ?? 'observer') as any
 

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabaseBrowser } from '../../lib/supabase/browser'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 export function ProposalCreateForm() {
   const supabase = useMemo(() => supabaseBrowser(), [])

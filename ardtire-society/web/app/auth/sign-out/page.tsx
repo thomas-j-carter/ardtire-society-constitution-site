@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation'
-import { supabaseServer } from '../../../lib/supabase/server'
+import { supabaseBrowser } from '@/lib/supabase/client'
 
 export const dynamic = 'force-dynamic'
 
 async function signOut() {
   'use server'
-  const supabase = supabaseServer()
+  const supabase = supabaseBrowser()
   await supabase.auth.signOut()
   redirect('/')
 }

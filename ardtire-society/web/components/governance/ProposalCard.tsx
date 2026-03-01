@@ -1,10 +1,10 @@
 'use client';
 
-import { supabaseServer } from '@/lib/supabase/server';
+import { supabaseBrowser } from '@/lib/supabase/client';
 import { useState } from 'react';
 
 export function ProposalCard({ proposal }: { proposal: any }) {
-  const supabase = supabaseServer();
+  const supabase = supabaseBrowser();
   const [loading, setLoading] = useState(false);
 
   async function castVote(type: 'for' | 'against' | 'abstain') {
