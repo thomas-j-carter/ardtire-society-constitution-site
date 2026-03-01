@@ -2,7 +2,7 @@
 
 ## ✅ Database Schema - ALREADY CREATED IN SUPABASE
 
-Your Supabase database has been fully configured with the following tables:
+The Supabase database has been fully configured with the following tables:
 
 ### Tables Created
 1. **roles** - 4 roles (founder, admin, member, observer)
@@ -348,8 +348,8 @@ project/
 Your `.env` file should contain:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://jnxwrwdyfngpxfdkfnwi.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 ---
