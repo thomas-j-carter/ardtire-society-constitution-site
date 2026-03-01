@@ -1,20 +1,24 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { SignActionButton } from '@/components/governance/SignActionButton';
+import { redirect } from 'next/navigation'
+import { SignActionButton } from '@/components/governance/SignActionButton'
+import { supabaseServer } from '@/lib/supabase/server'
 
 export default async function FounderApprovalQueue() {
-  const supabase = createServerComponentClient({ cookies });
-  
-  // 1. Security Check: Verify Founder Role
-  const { data: profile } = await supabase.from('profiles').select('role').single();
-  if (profile?.role !== 'Founder') redirect('/dashboard');
+  const supabase = supabaseServer()
 
-  // 2. Fetch Pending Governance Actions
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .single()
+
+  if (profile?.role !== 'Founder') {
+    redirect('/dashboard')
+  }
+
   const { data: actions } = await supabase
     .from('pending_governance_actions')
     .select('*')
-    .eq('status', 'pending');
+    .eq('status', 'pending')
+
 
   return (
     <div className="max-w-4xl">

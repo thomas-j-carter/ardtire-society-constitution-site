@@ -1,11 +1,11 @@
-import { createServerClient } from '@supabase/auth-helpers-nextjs';
+import { supabaseServer } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 import { ProposalCard } from '@/components/governance/ProposalCard';
 import { CommentItem } from '@/components/governance/CommentItem';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export default async function ProposalDetailPage({ params }: { params: { id: string } }) {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = supabaseServer();
   
   // Fetch Proposal
   const { data: proposal } = await supabase

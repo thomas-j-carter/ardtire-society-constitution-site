@@ -1,10 +1,10 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { supabaseServer } from '@/lib/supabase/server';
 import { useState } from 'react';
 
 export function ProposalCard({ proposal }: { proposal: any }) {
-  const supabase = createClientComponentClient();
+  const supabase = supabaseServer();
   const [loading, setLoading] = useState(false);
 
   async function castVote(type: 'for' | 'against' | 'abstain') {

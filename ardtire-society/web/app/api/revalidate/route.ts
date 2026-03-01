@@ -1,28 +1,34 @@
-import { NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
-import { parseBody } from 'next-sanity/webhook';
+import {revalidateTag} from 'next/cache'
+import {type NextRequest, NextResponse} from 'next/server'
+import {parseBody} from 'next-sanity/webhook'
 
-export async function POST(req: Request) {
+type WebhookPayload = {
+  _type: string
+}
+
+export async function POST(req: NextRequest) {
   try {
-    const { body, isValidSignature } = await parseBody(
+    if (!process.env.SANITY_REVALIDATE_SECRET) {
+      return new Response('Missing environment variable SANITY_REVALIDATE_SECRET', {status: 500})
+    }
+
+    const {body, isValidSignature} = await parseBody<WebhookPayload>(
       req,
-      process.env.SANITY_REVALIDATE_SECRET
-    );
+      process.env.SANITY_REVALIDATE_SECRET,
+    )
 
     if (!isValidSignature) {
-      return new Response('Invalid signature', { status: 401 });
+      return new Response(JSON.stringify({message: 'Invalid signature', body}), {status: 401})
     }
 
     if (!body?._type) {
-      return new Response('Bad Request', { status: 400 });
+      return new Response(JSON.stringify({message: 'Bad Request', body}), {status: 400})
     }
 
-    // Production-Hardened: Purge specific cache tags based on document type
-    revalidateTag(body._type);
-    
-    console.log(`✅ Revalidated cache for type: ${body._type}`);
-    return NextResponse.json({ revalidated: true, now: Date.now() });
-  } catch (err: any) {
-    return new Response(err.message, { status: 500 });
+    revalidateTag(body._type)
+    return NextResponse.json({body})
+  } catch (err) {
+    console.error(err)
+    return new Response((err as Error).message, {status: 500})
   }
 }

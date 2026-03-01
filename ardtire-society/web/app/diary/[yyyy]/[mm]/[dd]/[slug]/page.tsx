@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getDiaryEntryByDateSlug } from '../../../../../lib/sanity/fetchers'
-import { Breadcrumbs } from '../../../../../components/Breadcrumbs'
-import { PageFrame } from '../../../../../components/PageFrame'
-import { formatDateISO } from '../../../../../lib/utils'
-import { TagPills } from '../../../../../components/TagPills'
+import { getDiaryEntryByDateSlug } from '@/lib/sanity/fetchers'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { PageFrame } from '@/components/PageFrame'
+import { formatDateISO } from '@/lib/utils'
+import { TagPills } from '@/components/TagPills'
 
 export const revalidate = 300
 

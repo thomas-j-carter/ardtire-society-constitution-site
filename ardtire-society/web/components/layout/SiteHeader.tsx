@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { supabaseServer } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 
 export default async function SiteHeader() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = supabaseServer();
   const { data: { user } } = await supabase.auth.getUser();
   
   // Fetch user role for the "Role Badge"

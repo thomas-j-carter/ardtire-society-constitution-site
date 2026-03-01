@@ -1,15 +1,19 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { supabaseServer } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 export default async function MemberDashboard() {
-  const supabase = createServerComponentClient({ cookies });
-  
+  const supabase = supabaseServer()
+
   // Fetch active proposals and the user's role
   const { data: proposals } = await supabase
     .from('proposals')
     .select('*')
     .order('created_at', { ascending: false });
+
+  if (!session) {
+    redirect('/login')
+  }
 
   return (
     <div className="space-y-8">

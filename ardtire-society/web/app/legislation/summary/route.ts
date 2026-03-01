@@ -1,4 +1,4 @@
-import { getLegislationSummary } from '../../../../lib/legislation-summary'
+import { getLegislationSummary } from '@/lib/legislation-summary'
 
 export async function GET() {
   const summary = await getLegislationSummary()

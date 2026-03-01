@@ -17,5 +17,10 @@
   "devDependencies": {
     "concurrently": "^9.0.1",
     "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
+    "docx": "^9.6.0",
+    "solid": "link:@heroicons/react/20/solid"
   }
 }
