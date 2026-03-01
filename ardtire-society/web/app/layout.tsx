@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '../styles/globals.css'
+import "../styles/globals.css";
 import { getSiteSettings } from '../lib/sanity/fetchers'
 import { SiteHeader } from '../components/SiteHeader'
 import { SiteFooter } from '../components/SiteFooter'

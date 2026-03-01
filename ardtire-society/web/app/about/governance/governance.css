@@ -1,0 +1,20 @@
+.governance-layout {
+  width: 100%;
+}
+
+.governance-page {
+  padding: 2rem;
+}
+
+.governance-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.governance-page h1 {
+  margin: 0 0 1rem;
+}
+
+.governance-page p {
+  margin: 0;
+}
