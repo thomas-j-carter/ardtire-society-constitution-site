@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --accent: 79 70 229; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; }
+.container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+.card { border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 1px 2px rgba(15,23,42,0.06); background: white; }
+.btn { border-radius: 0.875rem; border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; font-weight: 600; }
+.btn-primary { border-color: rgba(var(--accent),0.35); background: rgba(var(--accent),0.1); }
+.skip-link { position:absolute; left:-999px; top:0; padding:0.5rem 0.75rem; background:white; border:1px solid #e2e8f0; border-radius:0.75rem; }
+.skip-link:focus { left:1rem; top:1rem; z-index:50; }

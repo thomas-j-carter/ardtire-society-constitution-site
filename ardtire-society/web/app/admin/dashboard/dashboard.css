@@ -1,0 +1,20 @@
+.dashboard-layout {
+  width: 100%;
+}
+
+.dashboard-page {
+  padding: 2rem;
+}
+
+.dashboard-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.dashboard-page h1 {
+  margin: 0 0 1rem;
+}
+
+.dashboard-page p {
+  margin: 0;
+}

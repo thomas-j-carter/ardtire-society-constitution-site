@@ -1,0 +1,20 @@
+.members-layout {
+  width: 100%;
+}
+
+.members-page {
+  padding: 2rem;
+}
+
+.members-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.members-page h1 {
+  margin: 0 0 1rem;
+}
+
+.members-page p {
+  margin: 0;
+}

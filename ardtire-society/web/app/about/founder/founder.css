@@ -1,0 +1,20 @@
+.founder-layout {
+  width: 100%;
+}
+
+.founder-page {
+  padding: 2rem;
+}
+
+.founder-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.founder-page h1 {
+  margin: 0 0 1rem;
+}
+
+.founder-page p {
+  margin: 0;
+}

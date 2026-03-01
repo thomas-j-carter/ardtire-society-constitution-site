@@ -1,0 +1,20 @@
+.legislation-layout {
+  width: 100%;
+}
+
+.legislation-page {
+  padding: 2rem;
+}
+
+.legislation-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.legislation-page h1 {
+  margin: 0 0 1rem;
+}
+
+.legislation-page p {
+  margin: 0;
+}

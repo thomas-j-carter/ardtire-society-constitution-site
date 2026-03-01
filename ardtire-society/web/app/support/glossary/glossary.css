@@ -1,0 +1,20 @@
+.glossary-layout {
+  width: 100%;
+}
+
+.glossary-page {
+  padding: 2rem;
+}
+
+.glossary-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.glossary-page h1 {
+  margin: 0 0 1rem;
+}
+
+.glossary-page p {
+  margin: 0;
+}

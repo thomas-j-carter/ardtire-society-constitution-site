@@ -1,0 +1,20 @@
+.quick-vote-layout {
+  width: 100%;
+}
+
+.quick-vote-page {
+  padding: 2rem;
+}
+
+.quick-vote-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.quick-vote-page h1 {
+  margin: 0 0 1rem;
+}
+
+.quick-vote-page p {
+  margin: 0;
+}

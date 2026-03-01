@@ -1,0 +1,20 @@
+.processes-layout {
+  width: 100%;
+}
+
+.processes-page {
+  padding: 2rem;
+}
+
+.processes-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.processes-page h1 {
+  margin: 0 0 1rem;
+}
+
+.processes-page p {
+  margin: 0;
+}

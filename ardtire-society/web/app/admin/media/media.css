@@ -1,0 +1,20 @@
+.media-layout {
+  width: 100%;
+}
+
+.media-page {
+  padding: 2rem;
+}
+
+.media-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.media-page h1 {
+  margin: 0 0 1rem;
+}
+
+.media-page p {
+  margin: 0;
+}

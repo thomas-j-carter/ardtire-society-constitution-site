@@ -1,0 +1,20 @@
+.id-layout {
+  width: 100%;
+}
+
+.id-page {
+  padding: 2rem;
+}
+
+.id-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.id-page h1 {
+  margin: 0 0 1rem;
+}
+
+.id-page p {
+  margin: 0;
+}

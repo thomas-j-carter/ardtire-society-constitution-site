@@ -1,0 +1,20 @@
+.guide-to-registering-layout {
+  width: 100%;
+}
+
+.guide-to-registering-page {
+  padding: 2rem;
+}
+
+.guide-to-registering-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.guide-to-registering-page h1 {
+  margin: 0 0 1rem;
+}
+
+.guide-to-registering-page p {
+  margin: 0;
+}

@@ -1,0 +1,225 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_DIR="$ROOT_DIR/web/app"
+SITEMAP_FILE="$ROOT_DIR/sitemap.md"
+
+usage() {
+  echo "Usage: ./scaffold <route>"
+  echo "Examples:"
+  echo "  ./scaffold bob"
+  echo "  ./scaffold about/community"
+  echo "  ./scaffold legislation/polls/[id]"
+}
+
+fail() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+trim_slashes() {
+  local v="$1"
+  v="${v#/}"
+  v="${v%/}"
+  printf '%s' "$v"
+}
+
+to_pascal_case() {
+  local input="$1"
+  local cleaned
+
+  cleaned="$(printf '%s' "$input" | sed -E 's/[\[\]]//g; s/[^A-Za-z0-9]+/ /g')"
+
+  local out=""
+  for word in $cleaned; do
+    out+="${word^}"
+  done
+
+  printf '%s' "${out:-Page}"
+}
+
+to_title_case() {
+  local input="$1"
+  local cleaned
+
+  cleaned="$(printf '%s' "$input" | sed -E 's/[\[\]]//g; s/[-_]+/ /g; s/[^A-Za-z0-9 ]+/ /g')"
+
+  local out=""
+  for word in $cleaned; do
+    out+="${word^} "
+  done
+
+  printf '%s' "${out%" "}"
+}
+
+to_css_token() {
+  local input="$1"
+  local token
+
+  token="$(printf '%s' "$input" \
+    | sed -E 's/^\[+//; s/\]+$//; s/[^A-Za-z0-9]+/-/g; s/^-+//; s/-+$//' \
+    | tr '[:upper:]' '[:lower:]')"
+
+  printf '%s' "${token:-page}"
+}
+
+route_ends_in_dynamic_segment() {
+  local route="$1"
+  [[ "$route" =~ (^|/)\[[^/]+\]$ ]]
+}
+
+normalized_sitemap_entry() {
+  local route="$1"
+
+  if route_ends_in_dynamic_segment "$route"; then
+    printf '/%s\n' "$route"
+  else
+    printf '/%s/\n' "$route"
+  fi
+}
+
+route_exists_in_sitemap() {
+  local route="$1"
+  local target="/$route"
+
+  awk -v target="$target" '
+    {
+      line=$0
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+      if (line == "") next
+
+      cmp = line
+      if (cmp != "/" && cmp ~ /\/$/) sub(/\/$/, "", cmp)
+
+      if (cmp == target) {
+        found = 1
+        exit
+      }
+    }
+    END { exit found ? 0 : 1 }
+  ' "$SITEMAP_FILE"
+}
+
+update_sitemap() {
+  local route="$1"
+  local entry
+  local tmp
+
+  entry="$(normalized_sitemap_entry "$route")"
+
+  if [[ ! -f "$SITEMAP_FILE" ]]; then
+    printf '%s' "$entry" > "$SITEMAP_FILE"
+    echo "Created sitemap: $SITEMAP_FILE"
+    return
+  fi
+
+  if route_exists_in_sitemap "$route"; then
+    echo "Sitemap already contains route pattern: /$route"
+    return
+  fi
+
+  tmp="$(mktemp)"
+  {
+    grep -v '^[[:space:]]*$' "$SITEMAP_FILE" || true
+    printf '%s' "$entry"
+  } | awk '!seen[$0]++' | LC_ALL=C sort > "$tmp"
+
+  mv "$tmp" "$SITEMAP_FILE"
+  echo "Updated sitemap: $SITEMAP_FILE"
+}
+
+ROUTE_INPUT="${1:-}"
+[[ -n "$ROUTE_INPUT" ]] || {
+  usage
+  exit 1
+}
+
+ROUTE_PATH="$(trim_slashes "$ROUTE_INPUT")"
+
+[[ -n "$ROUTE_PATH" ]] || fail "Root route ('/') is not supported by this script."
+[[ -d "$APP_DIR" ]] || fail "Could not find Next.js app directory at: $APP_DIR"
+[[ "$ROUTE_PATH" =~ ^[A-Za-z0-9/_\-\[\]\.]+$ ]] || fail "Route may only contain letters, numbers, /, -, _, ., and []."
+[[ "$ROUTE_PATH" != *".."* ]] || fail "Route cannot contain '..'."
+
+ROUTE_DIR="$APP_DIR/$ROUTE_PATH"
+SEGMENT_NAME="${ROUTE_PATH##*/}"
+
+PAGE_FILE="$ROUTE_DIR/page.tsx"
+LAYOUT_FILE="$ROUTE_DIR/layout.tsx"
+CSS_FILE="$ROUTE_DIR/$SEGMENT_NAME.css"
+
+[[ ! -e "$ROUTE_DIR" ]] || fail "Route already exists: $ROUTE_DIR"
+
+PAGE_COMPONENT_NAME="$(to_pascal_case "$SEGMENT_NAME")Page"
+LAYOUT_COMPONENT_NAME="$(to_pascal_case "$SEGMENT_NAME")Layout"
+DISPLAY_NAME="$(to_title_case "$SEGMENT_NAME")"
+CSS_TOKEN="$(to_css_token "$SEGMENT_NAME")"
+
+mkdir -p "$ROUTE_DIR"
+
+cat > "$PAGE_FILE" <<EOF
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '$DISPLAY_NAME',
+}
+
+export default function $PAGE_COMPONENT_NAME() {
+  return (
+    <main className="${CSS_TOKEN}-page">
+      <div className="${CSS_TOKEN}-page__inner">
+        <h1>$DISPLAY_NAME</h1>
+        <p>Replace this scaffolded content with your real page content.</p>
+      </div>
+    </main>
+  )
+}
+EOF
+
+cat > "$LAYOUT_FILE" <<EOF
+import type { ReactNode } from 'react'
+import './$SEGMENT_NAME.css'
+
+export default function $LAYOUT_COMPONENT_NAME({
+  children,
+}: {
+  children: ReactNode
+}) {
+  return <section className="${CSS_TOKEN}-layout">{children}</section>
+}
+EOF
+
+cat > "$CSS_FILE" <<EOF
+.${CSS_TOKEN}-layout {
+  width: 100%;
+}
+
+.${CSS_TOKEN}-page {
+  padding: 2rem;
+}
+
+.${CSS_TOKEN}-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.${CSS_TOKEN}-page h1 {
+  margin: 0 0 1rem;
+}
+
+.${CSS_TOKEN}-page p {
+  margin: 0;
+}
+EOF
+
+update_sitemap "$ROUTE_PATH"
+
+echo
+echo "Scaffolded route:"
+echo "  $ROUTE_DIR"
+echo
+echo "Created:"
+echo "  $PAGE_FILE"
+echo "  $LAYOUT_FILE"
+echo "  $CSS_FILE"

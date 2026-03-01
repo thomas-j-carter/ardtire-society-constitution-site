@@ -1,0 +1,20 @@
+.faq-layout {
+  width: 100%;
+}
+
+.faq-page {
+  padding: 2rem;
+}
+
+.faq-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.faq-page h1 {
+  margin: 0 0 1rem;
+}
+
+.faq-page p {
+  margin: 0;
+}

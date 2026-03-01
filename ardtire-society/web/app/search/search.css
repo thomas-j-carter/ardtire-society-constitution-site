@@ -1,0 +1,20 @@
+.search-layout {
+  width: 100%;
+}
+
+.search-page {
+  padding: 2rem;
+}
+
+.search-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.search-page h1 {
+  margin: 0 0 1rem;
+}
+
+.search-page p {
+  margin: 0;
+}

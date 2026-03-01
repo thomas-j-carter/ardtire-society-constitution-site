@@ -1,0 +1,20 @@
+.background-layout {
+  width: 100%;
+}
+
+.background-page {
+  padding: 2rem;
+}
+
+.background-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.background-page h1 {
+  margin: 0 0 1rem;
+}
+
+.background-page p {
+  margin: 0;
+}

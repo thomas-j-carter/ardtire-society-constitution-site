@@ -1,0 +1,20 @@
+.terms-layout {
+  width: 100%;
+}
+
+.terms-page {
+  padding: 2rem;
+}
+
+.terms-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.terms-page h1 {
+  margin: 0 0 1rem;
+}
+
+.terms-page p {
+  margin: 0;
+}

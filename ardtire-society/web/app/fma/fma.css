@@ -1,0 +1,20 @@
+.fma-layout {
+  width: 100%;
+}
+
+.fma-page {
+  padding: 2rem;
+}
+
+.fma-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.fma-page h1 {
+  margin: 0 0 1rem;
+}
+
+.fma-page p {
+  margin: 0;
+}

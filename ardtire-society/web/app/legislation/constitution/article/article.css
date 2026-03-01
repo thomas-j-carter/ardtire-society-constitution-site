@@ -1,0 +1,20 @@
+.article-layout {
+  width: 100%;
+}
+
+.article-page {
+  padding: 2rem;
+}
+
+.article-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.article-page h1 {
+  margin: 0 0 1rem;
+}
+
+.article-page p {
+  margin: 0;
+}

@@ -1,0 +1,20 @@
+.how-to-use-layout {
+  width: 100%;
+}
+
+.how-to-use-page {
+  padding: 2rem;
+}
+
+.how-to-use-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.how-to-use-page h1 {
+  margin: 0 0 1rem;
+}
+
+.how-to-use-page p {
+  margin: 0;
+}

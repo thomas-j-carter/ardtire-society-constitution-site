@@ -1,0 +1,20 @@
+.new-layout {
+  width: 100%;
+}
+
+.new-page {
+  padding: 2rem;
+}
+
+.new-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.new-page h1 {
+  margin: 0 0 1rem;
+}
+
+.new-page p {
+  margin: 0;
+}

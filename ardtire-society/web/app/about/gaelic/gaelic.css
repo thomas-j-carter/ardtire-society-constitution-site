@@ -1,0 +1,20 @@
+.gaelic-layout {
+  width: 100%;
+}
+
+.gaelic-page {
+  padding: 2rem;
+}
+
+.gaelic-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.gaelic-page h1 {
+  margin: 0 0 1rem;
+}
+
+.gaelic-page p {
+  margin: 0;
+}

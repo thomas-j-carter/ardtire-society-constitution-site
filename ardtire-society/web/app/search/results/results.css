@@ -1,0 +1,20 @@
+.results-layout {
+  width: 100%;
+}
+
+.results-page {
+  padding: 2rem;
+}
+
+.results-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.results-page h1 {
+  margin: 0 0 1rem;
+}
+
+.results-page p {
+  margin: 0;
+}

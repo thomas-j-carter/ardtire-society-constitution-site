@@ -1,0 +1,21 @@
+{
+  "name": "ardtire-society",
+  "private": true,
+  "packageManager": "pnpm@9.12.3",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "concurrently -n web,studio -c cyan,magenta \"pnpm -C web dev\" \"pnpm -C studio dev\"",
+    "web:dev": "pnpm -C web dev",
+    "studio:dev": "pnpm -C studio dev",
+    "build": "pnpm -C web build && pnpm -C studio build",
+    "lint": "pnpm -C web lint && pnpm -C studio lint",
+    "typecheck": "pnpm -C web typecheck && pnpm -C studio typecheck",
+    "format": "prettier -w ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "prettier": "^3.3.3"
+  }
+}

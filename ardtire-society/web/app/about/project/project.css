@@ -1,0 +1,20 @@
+.project-layout {
+  width: 100%;
+}
+
+.project-page {
+  padding: 2rem;
+}
+
+.project-page__inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.project-page h1 {
+  margin: 0 0 1rem;
+}
+
+.project-page p {
+  margin: 0;
+}
