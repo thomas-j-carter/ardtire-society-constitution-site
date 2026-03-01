@@ -334,7 +334,7 @@ WITH CHECK (
 
 ### 6. Seeding Instructions (`seed/SEEDING.md`)
 
-To populate your environment with the Phase 1 blueprint data:
+Populate the environment with the Phase 1 blueprint data:
 
 1. **Install Sanity CLI**: `npm install -g sanity`
 2. **Login**: `sanity login`
@@ -662,7 +662,7 @@ The monorepo is now structured to support **Ardtire Society's** transparency mis
 ---
 
 
-I have reviewed the architecture. To complete the **Ardtire Society** Phase 1 MVP, I will now generate the remaining core components. These bridge the high-fidelity content from Sanity with the secure user-state from Supabase.
+To complete the **Ardtire Society** Phase 1 MVP, we need to create the remaining core components. These bridge the high-fidelity content from Sanity with the secure user-state from Supabase.
 
 ---
 
@@ -1033,7 +1033,7 @@ sanity dataset import ../seed/seed.ndjson production
 
 ### 4. Database Migration
 
-Run the SQL provided in the **Supabase Backend** section of this blueprint within your Supabase SQL Editor to initialize the `profiles`, `proposals`, and `votes` tables.
+Run the SQL provided in the **Supabase Backend** section of this blueprint within the Supabase SQL Editor to initialize the `profiles`, `proposals`, and `votes` tables.
 
 ### 5. Run Locally
 
@@ -1105,15 +1105,9 @@ To maintain the public's trust, the system is designed with **Immutable History*
 
 
 #################### INTEGRATION  #######################
-
-
-I have analyzed the provided Phase 1 Blueprint from the prior attempt. The core discrepancy lies in the **Backend Architecture**: the prior attempt was a pure Supabase (Bolt) implementation, whereas our current directive is a **Hybrid Monorepo** (Sanity for public records/content and Supabase for membership/voting).
-
-I have integrated the advanced logic from the prior attempt (Audit Logging, abstain voting, threshold logic) into our hybrid architecture.
-
 ### 1. Integrated Database Schema (Supabase)
 
-The following schema incorporates the **Audit Logs**, **Abstain Voting**, and **Enhanced Proposal Metadata** from your provided text.
+The following schema incorporates the **Audit Logs**, **Abstain Voting**, and **Enhanced Proposal Metadata** from the provided text.
 
 ```sql
 -- EXTENDED PROFILES (Integrated bio and activity tracking)
@@ -1167,7 +1161,7 @@ CREATE TABLE document_versions (
 
 ### 2. Integrated RBAC & Permissions Logic
 
-I have merged the strict permission matrix from the prior attempt into our `web/lib/rbac.ts` utility.
+This merges the strict permission matrix from the prior attempt into our `web/lib/rbac.ts` utility.
 
 #### `web/lib/rbac.ts`
 
@@ -1277,7 +1271,7 @@ The following items from the prior attempt were **not** integrated because they 
 
 
 
-To conclude the Phase 1 implementation, I have generated the **Audit Log Viewer**—the final missing piece for a high-integrity administration. This component ensures that every role change, proposal deletion, and document upload is traceable.
+To conclude the Phase 1 implementation, we haave created the **Audit Log Viewer**. This is the final missing piece for a high-integrity administration. This component ensures that every role change, proposal deletion, and document upload is traceable.
 
 ---
 
@@ -1354,7 +1348,7 @@ export default function AuditLogTable({ logs }: { logs: AuditLog[] }) {
 
 ---
 
-### 2. Final Recommendations for Phase 1
+### 2. Final steps for Phase 1
 
 Before moving to Phase 2, ensure these "polishing" steps are taken to meet the "No Broken Builds" requirement:
 
@@ -1562,7 +1556,7 @@ With these polishing steps, Phase 1 is officially closed and "Production-Hardene
 
 ---
 
-To ensure that we are maintaining our "Production-Hardened" standard, I have designed the Phase 2 schema to be fully audit-ready and scalable. If you want me to be able to save or delete info about you, turn on the feature on the [Saved info page](https://gemini.google.com/saved-info).
+To ensure that we are maintaining our "Production-Hardened" standard, I have designed the Phase 2 schema to be fully audit-ready and scalable. 
 
 Moving into **Phase 2**, we shift from simple binary voting to a nuanced "Weighted Consensus" and "Deliberative" system.
 
@@ -2453,13 +2447,13 @@ This guide assumes a clean monorepo environment. Follow these steps in order to 
 ---
 
 
-This final **Vercel Deployment Script** and **Environment Validation Suite** ensure that your "Production-Hardened" platform transitions from a local repository to a live, secure environment without configuration drift.
+This final **Vercel Deployment Script** and **Environment Validation Suite** ensures that our "Production-Hardened" platform transitions from a local repository to a live, secure environment without configuration drift.
 
 ---
 
 ### 1. Final Deployment Script (`deploy.sh`)
 
-This script is designed to be run in your CI/CD pipeline (GitHub Actions) or manually before a production push. It validates that both the CMS and the Database are in sync.
+This script is designed to be run in our CI/CD pipeline (GitHub Actions) or manually before a production push. It validates that both the CMS and the Database are in sync.
 
 ```bash
 #!/bin/bash
@@ -2531,7 +2525,7 @@ export const env = envSchema.parse(process.env);
 
 ### 3. Production Readiness: The "Pre-Flight" Check
 
-Before you hand over the keys to the Society Founders, perform these three final tests:
+Before we hand over the keys to the Society Founders, we need to perform these three final tests:
 
 1. **The Multi-Sig Test**: Create a "Update Role" action. Ensure that the role **does not change** after the first signature, but **instantly updates** after the second.
 2. **The Revalidation Test**: Edit the "Society Mission" in Sanity Studio and publish. Refresh the public homepage. It should update within 2 seconds without a full rebuild.
